@@ -11,7 +11,7 @@ const Pokemon = (props) => {
             <SearchPokemon/>
             <div className="pokemon__box">
                 <div className="pokemon__photo">
-                    <img className="pokemon__img" src="https://via.placeholder.com/600" alt="photo pokemon"/>
+                    <img className="pokemon__img" src="https://via.placeholder.com/600" alt="pokemon"/>
                 </div>
                 <div className="pokemon__name"> Ditto132</div>
                 <div className="pokemon__info"> .Struggle:15</div>

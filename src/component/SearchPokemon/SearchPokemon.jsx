@@ -1,11 +1,11 @@
-import React, {useState} from "react";
+import React from "react";
 import "./SearchPokemon.scss";
 import * as axios from "axios";
 
 
 const SearchPokemon = (props) => {
 
-    const [pokemon, setPokemon] = useState([]);
+    // const [pokemon, setPokemon] = useState([]);
 
     let pokemonName = React.createRef()
 
