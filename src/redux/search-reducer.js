@@ -4,20 +4,19 @@ const ADD_POKEMON = "ADD_POKEMON";
 
 let initialState = {
     pokemon: [],
-    newPokemonText:""
+    newPokemonText: ''
 }
 
-const searchReducer = (state = initialState, action)=>{
+const searchReducer = (state = initialState, action) => {
 
-
-    switch (action.type){
+    switch (action.type) {
         case ADD_NEW_POKEMON:
-            return  {...state,newPokemonText: action.text};
+            return {...state, newPokemonText: action.text};
 
         case ADD_POKEMON:
-            return{
-                ...state,pokemon:[action.pokemon],
-
+            return {
+                ...state, pokemon: [action.pokemon],
+                newPokemonText: ''
             }
         default:
             return state;
@@ -26,8 +25,8 @@ const searchReducer = (state = initialState, action)=>{
 }
 
 
-export const addNewPokemon = (text) =>({type:ADD_NEW_POKEMON, text:text});
-export const addPokemon = (pokemon) =>({type:ADD_POKEMON,pokemon: pokemon});
+export const addNewPokemonText = (text) => ({type: ADD_NEW_POKEMON, text: text});
+export const addPokemon = (pokemon) => ({type: ADD_POKEMON, pokemon: pokemon});
 
 
 export default searchReducer;

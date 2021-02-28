@@ -7,13 +7,13 @@ import Pokemon from "./Pokemon";
 
 let mapStateToProps = (state) => {
     return {
-        pokemon: state.searchPokemon.pokemon,
+        pokemon: state.searchPokemon.pokemon
     }
 };
 
 let mapDispatchToProps = (dispatch) => {
-    return {}}
-
+    return {}
+}
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pokemon);

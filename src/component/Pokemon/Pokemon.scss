@@ -1,14 +1,11 @@
 .pokemon {
-  &__inner {
-
-  }
 
   &__box {
     width: 100%;
     margin-top: 24px;
     text-align: center;
     background-color: #eaebed;
-    padding-bottom: 20px;
+
   }
 
   &__photo {
@@ -34,13 +31,12 @@
   &__info {
     margin-top: 10px;
     font-size: 28px;
+    padding-bottom: 20px;
   }
 }
 
 @media (max-width: 567px) {
-  //.pokemon__inner {
-  //  padding: 10px;
-  //}
+
 
   .pokemon__name {
     font-size: 20px;
@@ -48,5 +44,6 @@
 
   .pokemon__info {
     font-size: 18px;
+
   }
 }
