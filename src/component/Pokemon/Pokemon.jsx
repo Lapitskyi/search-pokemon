@@ -1,22 +1,27 @@
 import React from "react";
+import  pokemonBol from "../../assets/images/pokemonBol.png";
 
 import "./Pokemon.scss"
-import SearchPokemon from "../SearchPokemon/SearchPokemon";
+
 
 
 const Pokemon = (props) => {
     return (
-        <div className="pokemon__inner">
-
-            <SearchPokemon/>
             <div className="pokemon__box">
-                <div className="pokemon__photo">
-                    <img className="pokemon__img" src="https://via.placeholder.com/600" alt="pokemon"/>
-                </div>
-                <div className="pokemon__name"> Ditto132</div>
-                <div className="pokemon__info"> .Struggle:15</div>
+                {
+                    props.pokemon.map((item)=>
+                    <div key={item.id}>
+                        <div className="pokemon__photo">
+                            <img className="pokemon__img" src={item.sprites.other["official-artwork"].front_default!=null? item.sprites.other["official-artwork"].front_default : pokemonBol} alt="pokemon"/>
+                        </div>
+                        <div className="pokemon__name"> {item.name} {item.id}</div>
+                        <div className="pokemon__info"> .Struggle: {item["base_experience"]}</div>
+
+                    </div>
+                    )
+                }
+
             </div>
-        </div>
     )
 }
 

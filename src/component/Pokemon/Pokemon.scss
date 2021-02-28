@@ -1,14 +1,6 @@
 .pokemon {
   &__inner {
-    max-width: 400px;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
 
-    border: 1px solid #707070;
-    background-color: #ffffff;
   }
 
   &__box {
@@ -46,9 +38,9 @@
 }
 
 @media (max-width: 567px) {
-  .pokemon__inner {
-    padding: 10px;
-  }
+  //.pokemon__inner {
+  //  padding: 10px;
+  //}
 
   .pokemon__name {
     font-size: 20px;
