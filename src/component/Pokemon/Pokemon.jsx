@@ -2,13 +2,25 @@ import React from "react";
 import pokemonBol from "../../assets/images/pokemonBol.svg";
 
 import "./Pokemon.scss"
+import NotFound from "../NotFound/NotFountd";
 
 
 const Pokemon = (props) => {
 
+    const pokemon = props.pokemon.map((pokemon) => {
+        if (pokemon) {
+            return {...pokemon}
+        } else {
+            return pokemon;
+        }
+
+    })
+
     return (
         <div className="pokemon__box">
-            {props.pokemon.map((item) =>
+            {!pokemon && <NotFound/>}
+
+            {pokemon && pokemon.map((item) =>
                 <div key={item.id}>
                     <div className="pokemon__photo">
                         <img className="pokemon__img"
