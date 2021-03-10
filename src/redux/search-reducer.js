@@ -1,9 +1,10 @@
 const ADD_NEW_POKEMON = "ADD_NEW_POKEMON";
 const ADD_POKEMON = "ADD_POKEMON";
+const ERROR_POKEMON = 'ERROR_POKEMON';
 
 
 let initialState = {
-    pokemon: [],
+    pokemon: undefined,
     newPokemonText: ''
 }
 
@@ -18,6 +19,13 @@ const searchReducer = (state = initialState, action) => {
                 ...state, pokemon: [action.pokemon],
                 newPokemonText: ''
             }
+
+        case ERROR_POKEMON:
+            return {
+                ...state, pokemon: action.errPokemon,
+                newPokemonText: ''
+            }
+
         default:
             return state;
 
@@ -27,6 +35,7 @@ const searchReducer = (state = initialState, action) => {
 
 export const addNewPokemonText = (text) => ({type: ADD_NEW_POKEMON, text: text});
 export const addPokemon = (pokemon) => ({type: ADD_POKEMON, pokemon: pokemon});
+export const errorPokemon = (errPokemon) => ({type: ERROR_POKEMON, errPokemon})
 
 
 export default searchReducer;

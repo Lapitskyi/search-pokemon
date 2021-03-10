@@ -2,17 +2,14 @@ import './App.scss';
 
 import React from "react";
 
-import NotFound from "./component/NotFound/NotFountd";
-import {Route} from "react-router-dom";
-import Home from "./component/Home/Home";
+import SearchPokemonContainer from "./component/SearchPokemon/SearchPokemonContainer";
 
 
 const App = () => {
     return (
         <div className="app-wrapper">
             <div className="container">
-                <Route path='/' exact render={() => <Home/>}/>
-                <Route path='/notfound' render={() => <NotFound/>}/>
+                 <SearchPokemonContainer/>
             </div>
         </div>
     )

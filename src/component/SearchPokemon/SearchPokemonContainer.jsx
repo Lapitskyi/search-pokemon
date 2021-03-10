@@ -1,8 +1,9 @@
 import React from "react";
 import SearchPokemon from "./SearchPokemon";
 import {connect} from "react-redux";
-import {addNewPokemonText, addPokemon} from "../../redux/search-reducer";
+import {addNewPokemonText, addPokemon, errorPokemon} from "../../redux/search-reducer";
 import * as axios from "axios";
+
 
 
 const SearchPokemonContainer = (props) => {
@@ -10,6 +11,8 @@ const SearchPokemonContainer = (props) => {
     const onChangeText = (e) => {
         props.addNewPokemonText(e.target.value);
     }
+
+
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -19,12 +22,13 @@ const SearchPokemonContainer = (props) => {
             .then(response => {
                 if (nemPokemon.toLowerCase() === response.data.name || response.data.id) {
                     props.addPokemon(response.data);
+                    console.log(response.data)
                 }
             })
             .catch(err => {
                 if (err.response) {
-                    props.addPokemon()
-                    console.log(err.response)
+                    props.errorPokemon(null)
+
                 } else if (err.request) {
                     // client never received a response, or request never left
                 }
@@ -36,7 +40,6 @@ const SearchPokemonContainer = (props) => {
         onSubmit={onSubmit}
         newPokemonText={props.newPokemonText}
         pokemon={props.pokemon}
-
     />
 }
 
@@ -51,5 +54,6 @@ let mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
     addNewPokemonText,
-    addPokemon
+    addPokemon,
+    errorPokemon
 })(SearchPokemonContainer);
