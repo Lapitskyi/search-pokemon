@@ -1,7 +1,7 @@
 import React from "react";
 import SearchPokemon from "./SearchPokemon";
 import {connect} from "react-redux";
-import {addNewPokemonText, addPokemon, errorPokemon} from "../../redux/search-reducer";
+import {addNewPokemonText, addPokemon, errorPokemon, toggleIsLoader} from "../../redux/search-reducer";
 import * as axios from "axios";
 
 
@@ -12,27 +12,30 @@ const SearchPokemonContainer = (props) => {
         props.addNewPokemonText(e.target.value);
     }
 
-
-
     const onSubmit = (e) => {
         e.preventDefault();
-        let nemPokemon = props.newPokemonText.toLowerCase()
+        let newPokemon = props.newPokemonText.toLowerCase()
+        if(newPokemon!==''){
+            props.toggleIsLoader(true);
+            axios.get(`https://pokeapi.co/api/v2/pokemon/${newPokemon}`)
+                .then(response => {
+                    if (newPokemon.toLowerCase() === response.data.name || response.data.id) {
+                        props.toggleIsLoader(false)
+                        props.addPokemon(response.data);
+                        console.log(response.data)
+                    }
+                })
+                .catch(err => {
+                    if (err.response) {
+                        props.toggleIsLoader(false)
+                        props.errorPokemon(null)
 
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${nemPokemon}`)
-            .then(response => {
-                if (nemPokemon.toLowerCase() === response.data.name || response.data.id) {
-                    props.addPokemon(response.data);
-                    console.log(response.data)
-                }
-            })
-            .catch(err => {
-                if (err.response) {
-                    props.errorPokemon(null)
+                    } else if (err.request) {
+                        // client never received a response, or request never left
+                    }
+                })
+        }
 
-                } else if (err.request) {
-                    // client never received a response, or request never left
-                }
-            })
     }
 
     return <SearchPokemon
@@ -40,6 +43,7 @@ const SearchPokemonContainer = (props) => {
         onSubmit={onSubmit}
         newPokemonText={props.newPokemonText}
         pokemon={props.pokemon}
+        isLoader={props.isLoader}
     />
 }
 
@@ -47,7 +51,8 @@ const SearchPokemonContainer = (props) => {
 let mapStateToProps = (state) => {
     return {
         pokemon: state.searchPokemon.pokemon,
-        newPokemonText: state.searchPokemon.newPokemonText
+        newPokemonText: state.searchPokemon.newPokemonText,
+        isLoader: state.searchPokemon.isLoader
     }
 };
 
@@ -55,5 +60,6 @@ let mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
     addNewPokemonText,
     addPokemon,
-    errorPokemon
+    errorPokemon,
+    toggleIsLoader
 })(SearchPokemonContainer);

@@ -12,7 +12,7 @@ const Pokemon = (props) => {
                 <div key={item.id}>
                     <div className="pokemon__photo">
                         <img className="pokemon__img"
-                             src={item.sprites.other["official-artwork"]["front_default"] || pokemonBol} alt="pokemon"/>
+                             src={item.sprites.other["official-artwork"]["front_default"]? item.sprites.other["official-artwork"]["front_default"]: pokemonBol} alt="pokemon"/>
                     </div>
                     <div className="pokemon__name"> {item.name} {item.id}</div>
                     <div className="pokemon__info"> Struggle: {item["base_experience"]}</div>

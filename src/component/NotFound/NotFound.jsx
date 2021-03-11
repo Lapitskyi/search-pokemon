@@ -12,7 +12,6 @@ const NotFound = () => {
             <img className="notfound__img" src={pokemonBol} alt="pokemon notfound"/>
         </div>
 
-
     )
 }
 

@@ -1,8 +1,9 @@
-import React from "react";
-import "./SearchPokemon.scss";
+import React from 'react';
+import './SearchPokemon.scss';
 
-import Pokemon from "../Pokemon/Pokemon";
-import NotFound from "../NotFound/NotFound";
+import Pokemon from '../Pokemon/Pokemon';
+import NotFound from '../NotFound/NotFound';
+import Preloader from "../Preloader/Preloader";
 
 
 const SearchPokemon = (props) => {
@@ -10,7 +11,7 @@ const SearchPokemon = (props) => {
     return (
         <div className="search">
             {
-            <div className="search__inner">
+                <div className="search__inner">
                     <h2 className="search__title"> Pokemon Name </h2>
                     <p className="search__text">Try name "pikachu", "clefable" or "number"</p>
                     <form className="form">
@@ -26,12 +27,8 @@ const SearchPokemon = (props) => {
                     </form>
                 </div>
             }
-            {props.pokemon &&
-                 <Pokemon pokemon={props.pokemon}/>
-            }
-            {props.pokemon === null  &&
-                <NotFound/>
-            }
+            {(props.isLoader ? <Preloader/> : null) || (props.pokemon && <Pokemon pokemon={props.pokemon}/>) || (props.pokemon === null && <NotFound/>)}
+
 
         </div>
     )
